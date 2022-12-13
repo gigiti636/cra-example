@@ -1,0 +1,96 @@
+:root {
+  --et-white: #fff;
+  --et-offWhite: #f7f7f7;
+  --et-darkWhite: #ececec;
+  --et-darkerWhite: #dfdfdf;
+  --et-lightGray: #bcb5b9;
+  --et-gray: #9b9b9b;
+  --et-darkGray: #979797;
+  --et-black: #333333;
+  --et-red: #ec3131;
+  --et-redLight: #fef4f2;
+  --et-green: #00b986;
+  --et-greenLight: #edf7ee;
+  --et-blue: #006DD3;
+  --et-blueLight: #00F2FF;
+  --et-yellow: #ffc200;
+  --et-yellowLight: #fffcdc;
+}
+
+html,body{
+  height:100%;
+  background: var(--et-white);
+  color: var(--et-black);
+  margin: 0;
+  padding: 0;
+}
+#root{
+  HEIGHT:100%;
+}
+
+.error{
+  color: var(--et-red)!important;
+}
+
+.blackbox{
+  background: var(--et-black);
+  color: var(--et-white);
+}
+
+input:-webkit-autofill {
+  -webkit-background-clip: text;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

@@ -1,0 +1,29 @@
+.login-wrapper{
+  form{
+    width: 300px;
+    .input-wrapper{
+      background: var(--et-offWhite);
+      height:55px;
+      label{
+        color: var(--et-gray);
+        font-size: 12px;
+        margin: 0;
+      }
+      .input-login{
+        outline:none;
+        border:none;
+        font-size:16px;
+        background-color: transparent!important;
+        -webkit-text-fill-color: var(--et-black)!important;
+      }
+    }
+    button[type=submit] {
+      border: none!important;
+      outline:none!important;
+      height: 52px;
+    }
+    input{
+      border-radius: 4px;
+    }
+  }
+}
