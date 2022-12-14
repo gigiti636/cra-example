@@ -88,7 +88,7 @@ function App() {
 
         const isValid = validateAll()
 
-        if (!isValid) {
+        if (!isValid || loader) {
             return false
         }
         values.history = navigate
