@@ -3,11 +3,11 @@ import '../../../index.scss';
 
 function Page() {
     return (
-        <div className="App" style={{background:'red'}}>
+        <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
-                    THIS IS PAGE 1
+                    THIS IS PAGE a Sample Project
                 </p>
                 <a
                     className="App-link"

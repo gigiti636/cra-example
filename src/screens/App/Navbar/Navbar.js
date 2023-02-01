@@ -1,5 +1,6 @@
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, NavLink} from "react-router-dom";
 import React from "react";
+import {NavigationWrapper} from "./atom"
 
 function Navbar() {
     const location = useLocation();
@@ -7,14 +8,16 @@ function Navbar() {
         return null;
     }
 
+    let activeStyle = {
+        borderBottom: "2px solid black",
+    };
+
     return (
-        <div className="App" style={{background:'red'}}>
-            {location.key}
-            <div style={{height: '150px'}} className={'d-flex justify-content-around'}>
-                <Link to="/">Home</Link>
-                <Link to="/account">account</Link>
-            </div>
-        </div>
+        <NavigationWrapper className="d-flex justify-content-around align-items-center">
+            <NavLink to="/" className={'text-dark text-decoration-none'} style={({ isActive }) => isActive ? activeStyle : undefined}>Home</NavLink>
+            <NavLink to="/mock-categories" className={'text-dark text-decoration-none'} style={({ isActive }) => isActive ? activeStyle : undefined}>Mock-Api-Categories</NavLink>
+            <NavLink to="/rick-and-morty-api" className={'text-dark text-decoration-none'} style={({ isActive }) => isActive ? activeStyle : undefined}>Test public Api</NavLink>
+        </NavigationWrapper>
     );
 }
 

@@ -114,7 +114,7 @@ function App() {
                     <div className="input-wrapper d-flex flex-column"  style={ emailVal ? { border:'1px solid var(--et-red)'} : {border:'none'}}>
                         <label>Email:</label>
                         <input
-                            className="input-login"
+                            className="input-login p-2"
                             type="email"
                             name="email"
                             value={email}
@@ -127,7 +127,7 @@ function App() {
                     <div className="input-wrapper d-flex flex-column mt-3"  style={ passwordVal ? { border:'1px solid var(--et-red)'} : {border:'none'}}>
                         <label>{lang.pass}:</label>
                         <input
-                            className="input-login"
+                            className="input-login p-2"
                             type="password"
                             name="password"
                             value={password}

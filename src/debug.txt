@@ -1,0 +1,78 @@
+[
+    {
+        "id": 1,
+        "pageType": "category",
+        "pageTitle": "Rocket Fuel",
+        "isActive": true,
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting, industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+        "id": 2,
+        "pageType": "category",
+        "pageTitle": "Bottle Cooler",
+        "isActive": true,
+        "content": "...for many different reasons, bottle coolers are really cool",
+    {
+        "id": 3,
+        "pageType": "category",
+        "pageTitle": "Space Station",
+        "isActive": false,
+        "content": "Space seems cool but its dangerous and scary, lets avoid that for now",
+    },
+    {
+        "id": 4,
+        "pageType": "category",
+        "pageTitle": "Potatoes",
+        "isActive": true,
+        "content": "Here for the memes",
+    },
+    {
+        "id": 5,
+        "pageType": "category",
+        "pageTitle": "Chocolates",
+        "isActive": true,
+        "content": "Loving chocolate is loving yourself",
+    },
+    {
+        "id": 6,
+        "pageType": "category",
+        "pageTitle": "Fruits and Vegetables",
+        "isActive": true,
+        "content": "Very important for our diet",
+    },
+    {
+        "id": 7,
+        "pageType": "category",
+        "pageTitle": "Energy Drinks",
+        "isActive": true,
+        "content": "To code and play video games all night",
+    },
+    {
+        "id": 7,
+        "pageType": "category",
+        "pageTitle": "Potatoes",
+        "isActive": true,
+        "content": "Here for the memes",
+    },
+    {
+        "id": 8,
+        "pageType": "category",
+        "pageTitle": "Music",
+        "isActive": true,
+        "content": "Here lays many instruments, which one fits you?",
+    },
+    {
+        "id": 9,
+        "pageType": "category",
+        "pageTitle": "Events",
+        "isActive": true,
+        "content": "Sport events and music concerts",
+    },
+    {
+        "id": 10,
+        "pageType": "category",
+        "pageTitle": "News",
+        "isActive": false,
+        "content": "Where do you live, if you dont know what is happening around the world ;",
+    },
+]

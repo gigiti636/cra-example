@@ -1,0 +1,28 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+
+.card {
+  border: 1px solid gray;
+  margin: 5px;
+  border-radius: 4px;
+  width: 200px;
+  height: 230px;
+}
+
+.card:hover {
+  border-color: yellow;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+.card h3 {
+  text-align: center;
+  margin: 0;
+  font-size: 12px;
+}
