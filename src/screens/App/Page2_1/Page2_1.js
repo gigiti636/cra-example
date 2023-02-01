@@ -1,12 +1,14 @@
-import logo from '../../../logo.svg';
+import { useParams } from 'react-router-dom';
 
 function Page() {
+    let { categoryId } = useParams(); // Unpacking and retrieve id
+
+    console.log(categoryId);
     return (
-        <div className="App">
-            <header className="App-header h-100">
-                <img src={logo} className="App-logo" alt="logo" />
+        <div className={'d-flex h-100'}>
+            <header className="App-header h-100 w-100">
                 <p>
-                    THIS IS PAGE a Sample Project
+                    THIS IS sub PAGE route
                 </p>
                 <a
                     className="App-link"
@@ -20,5 +22,5 @@ function Page() {
         </div>
     );
 }
-
+//https://dev.to/junko911/how-to-implement-nested-routes-with-react-router-59oe
 export default Page;

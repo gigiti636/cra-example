@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Page.scss';
 import {useDispatch, useSelector} from "react-redux";
-
 import axios from 'axios';
 import {unsetLoader, setLoader} from "../../../redux/client";
 import Spinner from "react-bootstrap/Spinner";
@@ -20,7 +19,6 @@ function Page() {
         }
         Promise.all(data)
             .then(re => {
-                console.log('fetch finish');
                 let allCards = [];
                 const apiData = re.map(re => {
                     return {
