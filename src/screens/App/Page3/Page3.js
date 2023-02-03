@@ -33,7 +33,7 @@ function Page() {
                 setCards(allCards);
                 dispatch(unsetLoader());
             });
-    }, []);
+    }, );
 
     const onCardClick = (index,card) => {
         const newCards = [...cards];
@@ -58,7 +58,7 @@ function Page() {
                                 className='card'
                                 onClick={() => onCardClick(index,card)}
                             >
-                                <img src={card.image}></img>
+                                <img src={card.image} alt="char-img"></img>
                                 <h3>
                                     {
                                         card.isNameVisible ? card.name : '???'
