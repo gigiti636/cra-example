@@ -7,9 +7,7 @@ function Page() {
     const {categories} = useContext(CategoriesContext);
 
     const categorySelected = categories.find(category => Number(categoryId) === category.id)
-    console.log(categoryId);
-    console.log(categories);
-    console.log(categorySelected);
+
     return (
         <div className={'d-flex h-100'}>
             <header className="App-header h-100 w-100">
@@ -23,5 +21,5 @@ function Page() {
         </div>
     );
 }
-//https://dev.to/junko911/how-to-implement-nested-routes-with-react-router-59oe
+
 export default Page;
