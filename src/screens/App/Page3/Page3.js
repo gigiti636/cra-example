@@ -39,7 +39,6 @@ function Page() {
         const newCards = [...cards];
         newCards[index].isNameVisible = !newCards[index].isNameVisible;
         setCards(newCards);
-        console.log(card)
     };
 
     return (
