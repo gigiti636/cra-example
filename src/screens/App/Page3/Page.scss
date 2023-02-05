@@ -1,7 +1,16 @@
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
   justify-content: space-evenly;
+  @media (min-width: 768px) and (max-width: 950px) {
+    grid-template-columns: auto auto auto auto auto;
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: auto auto auto;
+  }
+  @media (max-width: 400px) {
+    grid-template-columns: auto auto;
+  }
 }
 
 
@@ -9,8 +18,7 @@
   border: 1px solid gray;
   margin: 5px;
   border-radius: 4px;
-  width: 200px;
-  height: 230px;
+  text-align: center;
 }
 
 .card:hover {

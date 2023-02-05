@@ -1,39 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Page.scss';
 import {useDispatch, useSelector} from "react-redux";
 import axios from 'axios';
 import {unsetLoader, setLoader} from "../../../redux/client";
 import Spinner from "react-bootstrap/Spinner";
+import Pagination from './Pagination'
 
 function Page() {
+    const maxPages = useRef(1);
+
     const [cards, setCards ] = useState([]);
+    const [page, setPage ] = useState(1);
     const dispatch = useDispatch();
     const {loader}  = useSelector(state => state.client);
 
 
     useEffect(() => {
-        const data = [];
         dispatch(setLoader())
-        for( var i=1 ; i <= 100; i=i+1 ) {
-            data.push(axios.get(`https://rickandmortyapi.com/api/character/${i}`));
-        }
-        Promise.all(data)
-            .then(re => {
-                let allCards = [];
-                const apiData = re.map(re => {
-                    return {
-                        id : re.data.id,
-                        name : re.data.name,
-                        image: re.data.image,
-                        species : re.data.species,
-                        isNameVisible: false
-                    }
-                });
-                allCards = [...apiData];
-                setCards(allCards);
-                dispatch(unsetLoader());
-            });
-    }, );
+        axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`)
+        .then(re => {
+            maxPages.current = re.data.info.pages
+            setCards(re.data.results);
+            dispatch(unsetLoader());
+        });
+
+    }, [page,dispatch]);
 
     const onCardClick = (index,card) => {
         const newCards = [...cards];
@@ -42,13 +33,12 @@ function Page() {
     };
 
     return (
+        loader ?
+            <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+                <Spinner/>
+            </div> :
         <div className="App w-100 h-100">
-            {
-                loader &&
-                <div className="w-100 h-100 d-flex justify-content-center align-items-center">
-                    <Spinner/>
-                </div>
-            }
+            <Pagination currentPage={page} onPageChange={(number)=>setPage(number)} totalPages={maxPages.current}/>
             <section className='cards-container'>
                 {
                     cards.map(( card, index) => {
@@ -58,12 +48,11 @@ function Page() {
                                 className='card'
                                 onClick={() => onCardClick(index,card)}
                             >
-                                <img src={card.image} alt="char-img"></img>
+                                <img src={card.image} alt="char-img" loading="lazy"/>
                                 <h3>
-                                    {
-                                        card.isNameVisible ? card.name : '???'
-                                    }
+                                    {card.name}
                                 </h3>
+                                <p>{card.location.name}</p>
                             </div>
                         )
                     })

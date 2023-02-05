@@ -6,4 +6,7 @@ export const NavigationWrapper = styled.div`
   background: ${(props) => props.theme.darkWhite};
   color: ${(props) => props.theme.black};
   font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 `;
