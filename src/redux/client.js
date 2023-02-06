@@ -21,7 +21,7 @@ const messageSlice = createSlice({
         unsetLoader: (state) => {
             state.loader = false;
         },
-    },
+    }
 });
 
 const { reducer, actions } = messageSlice;

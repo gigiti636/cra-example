@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const initialState = {
+const initialUser = {
     id: null,
     email: '',
     password: '',
@@ -9,6 +9,9 @@ const initialState = {
     role: '',
     avatar: ''
 };
+
+
+const initialState =  JSON.parse(localStorage.getItem('userStore')) ? JSON.parse(localStorage.getItem('userStore')) : initialUser;
 
 const messageSlice = createSlice({
     name: "user",

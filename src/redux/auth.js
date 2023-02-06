@@ -12,20 +12,22 @@ export const login = createAsyncThunk(
         thunkAPI.dispatch(setLoader());
         try {
             const response_auth = await api.post('/auth/login',  data);
+            console.log(response_auth)
             const {access_token, refresh_token} = response_auth.data;
+            localStorage.setItem('authStore',JSON.stringify(response_auth.data));
             setToken(access_token);
 
+            if(response_auth.data.status === 401)
+                thunkAPI.dispatch(setMessage('Unauthorized'));
             return response_auth.data;
         } catch (error) {
-            console.log(error)
-            thunkAPI.dispatch(setMessage(error.response.data.message));
             return thunkAPI.rejectWithValue();
         }finally {
             thunkAPI.dispatch(unsetLoader());
 
             const response_userSession = await api.get('/auth/profile');
             const userData = response_userSession.data;
-
+            localStorage.setItem('userStore',JSON.stringify(userData));
 
             if(userData){
                 navigate('/');
@@ -37,10 +39,12 @@ export const login = createAsyncThunk(
 );
 
 
-const initialState = {
+const initialAuth = {
     access_token: '',
     refresh_token: '',
 };
+
+const initialState =  JSON.parse(localStorage.getItem('authStore')) ? JSON.parse(localStorage.getItem('authStore')) : initialAuth;
 
 const authSlice = createSlice({
     name: "auth",
