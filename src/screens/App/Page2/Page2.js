@@ -1,15 +1,42 @@
 import { Outlet } from 'react-router-dom';
 import categories from "./categories.json";
 import {Link} from "react-router-dom";
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import '../../../utils/string-utils';
 import {CategoriesContext} from "./catagories_context";
 import { useParams } from 'react-router-dom';
+import client from "../../../api-client";
+import {CategoryWrapper} from './atom'
 
 
 
 function Page() {
-    const [CategoriesFiltered,setCategoriesFiltered] = useState(categories);
+    const [Categories,setCategories] = useState([]);
+    const [Products,setProducts] = useState([]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            client("/categories").then( response =>{
+                const categories = response.data;
+                setCategories(categories)
+            });
+
+        };
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            client("/products").then( response =>{
+                const products = response.data;
+                setProducts(Products)
+                console.log(products)
+            });
+
+        };
+        fetchData();
+    }, [Products]);
 
     const searchTerm = useRef('');
     let activeToggle = useRef(false);
@@ -47,7 +74,6 @@ function Page() {
             }
         })
 
-        setCategoriesFiltered(filtered_categories);
     }
     return (
         <div className="App d-flex flex-column">
@@ -64,10 +90,26 @@ function Page() {
                 </div>
 
             </div>
-            <p className='d-flex text-center justify-content-around mb-2'>
-                {CategoriesFiltered.map(category => <Link to={`${category.id}`} key={category.id} className={`pl-2 text-dark ${isActive(category.id)}`}>{category.pageTitle}</Link>)}
-            </p>
-            <CategoriesContext.Provider value={{categories: categories}}>
+            <div className='d-flex text-center justify-content-around mb-2 flex-wrap'>
+                {Categories.map(category =>
+                    <CategoryWrapper backgroundImage={category.image}>
+                        <Link to={`${category.id}`} key={category.id} className={`pl-2 text-dark ${isActive(category.id)}`}>
+                            {category.name}
+                        </Link>
+                    </CategoryWrapper>
+                )}
+            </div>
+            <div>
+                {Products.map(product =>
+                    <div key={product.id}>
+                        <img src={product.images[0]}/>
+                        <Link to={`${product.id}`} className={`pl-2 text-dark`}>
+                            {product.title}
+                        </Link>
+                    </div>
+                )}
+            </div>
+            <CategoriesContext.Provider value={{categories: Categories}}>
                 <Outlet />
             </CategoriesContext.Provider>
 
