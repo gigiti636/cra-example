@@ -10,23 +10,10 @@ import './Login.scss';
 function App() {
     const {error_message, loader}  = useSelector(state => state.client);
 
-    const token  = localStorage.getItem('authToken')
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const lang = React.useContext(LanguageContext);
-
-
-        useEffect(() => {
-            console.log('message');
-            console.log(error_message);
-            return () => {
-                setTimeout(() => {
-                    dispatch(clearMessage())
-                }, 5000)
-            }
-        }, [error_message,dispatch])
 
     const [values, setValues] = useState({
         email: '',
@@ -64,19 +51,19 @@ function App() {
         return isValid
     }
     const validateOne = (e) => {
-        const { name } = e.target
-        const value = values[name]
-        let message = ''
+        const { name } = e.target;
+        const value = values[name];
+        let message = '';
 
         if (!value) {
-            message = `${name} is required`
+            message = `${name} is required`;
         }
 
         if (value && name === 'email' && !/\S+@\S+\.\S+/.test(value)) {
-            message = 'Email format must be as example@mail.com'
+            message = 'Email format must be as example@mail.com';
         }
 
-        setValidations({...validations, [name]: message })
+        setValidations({...validations, [name]: message });
     }
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -84,8 +71,8 @@ function App() {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-
+        e.preventDefault();
+        dispatch(clearMessage());
         const isValid = validateAll()
 
         if (!isValid || loader) {
@@ -101,52 +88,49 @@ function App() {
         password: passwordVal
     } = validations
 
-    if(token){
-        return <Navigate replace to="/" />
-    }else {
-        return (
-            <>
-            <div className={'ml-3 font-weight-bold'} style={{position:'fixed'}}>
-                MyRestaurant
-            </div>
-            <div className="login-wrapper d-flex justify-content-center align-items-center flex-column h-100  container">
-                <form onSubmit={handleSubmit}>
-                    <div className="input-wrapper d-flex flex-column"  style={ emailVal ? { border:'1px solid var(--et-red)'} : {border:'none'}}>
-                        <label>Email:</label>
-                        <input
-                            className="input-login p-2"
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={handleChange}
-                            onBlur={validateOne}
-                        />
-                    </div>
-                    <div className={`error ${emailVal ? 'mt-1 mb-2 ' : ''}`}>{emailVal}</div>
+    return (
+        <>
+        <div className={'ml-3 font-weight-bold'} style={{position:'fixed'}}>
+            MyRestaurant
+        </div>
+        <div className="login-wrapper d-flex justify-content-center align-items-center flex-column h-100  container">
+            <form onSubmit={handleSubmit}>
+                <div className="input-wrapper d-flex flex-column"  style={ emailVal ? { border:'1px solid var(--et-red)'} : {border:'none'}}>
+                    <label>Email:</label>
+                    <input
+                        className="input-login p-2"
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleChange}
+                        onBlur={validateOne}
+                    />
+                </div>
+                <div className={`error ${emailVal ? 'mt-1 mb-2 ' : ''}`}>{emailVal}</div>
 
-                    <div className="input-wrapper d-flex flex-column mt-3"  style={ passwordVal ? { border:'1px solid var(--et-red)'} : {border:'none'}}>
-                        <label>{lang.pass}:</label>
-                        <input
-                            className="input-login p-2"
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={handleChange}
-                            onBlur={validateOne}
-                        />
-                    </div>
-                    <div className={`error ${passwordVal ? 'mt-1 mb-2 ' : ''}`}>{passwordVal}</div>
-                    <button type="submit" className="mt-3 w-100 d-flex blackbox justify-content-center align-items-center">
-                        Login {loader &&    <Spinner animation="border" className="ml-2" variant="light"  size="sm"/>}
-                    </button>
-                    <div className={"error p-2 text-center"}>
-                        {error_message}
-                    </div>
-                </form>
-            </div>
-            </>
-        );
-    }
+                <div className="input-wrapper d-flex flex-column mt-3"  style={ passwordVal ? { border:'1px solid var(--et-red)'} : {border:'none'}}>
+                    <label>{lang.pass}:</label>
+                    <input
+                        className="input-login p-2"
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handleChange}
+                        onBlur={validateOne}
+                    />
+                </div>
+                <div className={`error ${passwordVal ? 'mt-1 mb-2 ' : ''}`}>{passwordVal}</div>
+                <button type="submit" className="mt-3 w-100 d-flex blackbox justify-content-center align-items-center">
+                    Login {loader &&    <Spinner animation="border" className="ml-2" variant="light"  size="sm"/>}
+                </button>
+                <div className={"error p-2 text-center"}>
+                    {error_message}
+                </div>
+            </form>
+        </div>
+        </>
+    );
+
 }
 
 export default App;

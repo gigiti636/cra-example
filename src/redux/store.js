@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from "./auth";
 import clientReducer from "./client";
-import restaurantReducer from "./restaurant";
+import userReducer from "./user";
 
 const reducer = {
     auth: authReducer,
     client: clientReducer,
-    restaurant: restaurantReducer
+    user: userReducer
 }
 
 const store = configureStore({

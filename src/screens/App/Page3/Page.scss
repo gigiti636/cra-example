@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
   justify-content: space-evenly;
-  @media (min-width: 768px) and (max-width: 950px) {
+  @media (min-width: 768px) and (max-width: 1200px) {
     grid-template-columns: auto auto auto auto auto;
   }
   @media (max-width: 768px) {
@@ -10,6 +10,9 @@
   }
   @media (max-width: 400px) {
     grid-template-columns: auto auto;
+  }
+  @media (max-width: 320px) {
+    grid-template-columns: auto;
   }
 }
 
@@ -28,6 +31,7 @@
 .card img {
   width: 100%;
   height: auto;
+  min-height: 150px;
 }
 .card h3 {
   text-align: center;

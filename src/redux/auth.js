@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setMessage, setLoader, unsetLoader } from "./client";
-import {setRestaurant} from "./restaurant";
-import api, {setToken,setStore} from '../myrestaurant-client-api';
+import {setUser} from "./user";
+import api, {setToken} from '../api-client';
 
 
 export const login = createAsyncThunk(
@@ -11,29 +11,36 @@ export const login = createAsyncThunk(
         delete data['history'];
         thunkAPI.dispatch(setLoader());
         try {
-            const response = await api.post('/login',  data)
-            if (typeof response === 'string') {
-                thunkAPI.dispatch(setMessage(response));
-            }else{
-                localStorage.setItem('auth',JSON.stringify(response.data))
-                localStorage.setItem('restaurant',JSON.stringify(response.data.user.restaurant))
-                thunkAPI.dispatch(setRestaurant(response.data.user.restaurant));
-                setStore(response.data.user.default_restaurant_id);
-                setToken(response.data.token);
-                navigate('/');
-                return response.data
-            }
+            const response_auth = await api.post('/auth/login',  data);
+            const {access_token, refresh_token} = response_auth.data;
+            setToken(access_token);
+
+            return response_auth.data;
         } catch (error) {
+            console.log(error)
+            thunkAPI.dispatch(setMessage(error.response.data.message));
             return thunkAPI.rejectWithValue();
         }finally {
             thunkAPI.dispatch(unsetLoader());
+
+            const response_userSession = await api.get('/auth/profile');
+            const userData = response_userSession.data;
+
+
+            if(userData){
+                navigate('/');
+                thunkAPI.dispatch(setUser(userData));
+            }
+
         }
     }
 );
 
 
-const auth = JSON.parse(localStorage.getItem("auth"));
-const initialState = auth
+const initialState = {
+    access_token: '',
+    refresh_token: '',
+};
 
 const authSlice = createSlice({
     name: "auth",

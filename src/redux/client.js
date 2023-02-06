@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     error_message: '',
-    loader: false
+    loader: false,
 };
 
 const messageSlice = createSlice({

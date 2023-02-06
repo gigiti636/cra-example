@@ -6,7 +6,7 @@ import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ThemeProvider } from 'styled-components';
 import {theme} from "./theme";
-import { configApi } from './myrestaurant-client-api';
+import { configApi } from './api-client';
 import App from './routes';
 import { Toaster } from "react-hot-toast";
 /*import reportWebVitals from './reportWebVitals';*/

@@ -1,13 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const restaurant = JSON.parse(localStorage.getItem("restaurant"));
-const initialState = restaurant ? restaurant : null;
+
+const initialState = {
+    id: null,
+    email: '',
+    password: '',
+    name: '',
+    role: '',
+    avatar: ''
+};
 
 const messageSlice = createSlice({
-    name: "restaurant",
+    name: "user",
     initialState,
     reducers: {
-        setRestaurant: (state, action) => {
+        setUser: (state, action) => {
             return action.payload;
         }
     },
@@ -15,5 +22,5 @@ const messageSlice = createSlice({
 
 const { reducer, actions } = messageSlice;
 
-export const { setRestaurant } = actions
+export const { setUser } = actions
 export default reducer;

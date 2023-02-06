@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_VERSION = 3;
 const URL = 'https://api.myrestaurant.gr/';
 const STAGING_URL = 'https://api-staging.myrestaurant.gr/';
-const LOCAL_URL = 'http://api.myrestaurant.local';
+const LOCAL_URL = 'https://api.escuelajs.co/api/v1/';
 
 const AUTH_TOKEN = 'authToken';
 const DEFAULT_STORE = 'defaultStore';
@@ -14,9 +14,7 @@ let store = localStorage.getItem(DEFAULT_STORE);
 const client = axios.create({
     baseURL: URL,
     headers: {
-        Accept: `application/vnd.api.resmgm.v${API_VERSION}+json`,
-        Authorization: `Bearer ${token}`,
-        'X-Restaurant': store
+        Authorization: `Bearer ${token}`
     }
 });
 
@@ -33,7 +31,7 @@ client.interceptors.response.use(undefined, err => {
         logout();
     }
 
-    return err.response.data.message;
+    return err.response;
 });
 client.defaults.headers['notify-token'] = localStorage.getItem('FCM_TOKEN');
 
@@ -73,6 +71,7 @@ export const setStore = storeId => {
 };
 
 export const setToken = newToken => {
+    console.log(newToken)
     token = newToken;
     localStorage.setItem(AUTH_TOKEN, newToken);
     client.defaults.headers.Authorization = `Bearer ${newToken}`;
