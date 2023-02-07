@@ -6,8 +6,6 @@ export default function useFetchProducts(params) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    console.log(params)
-
     useEffect(() => {
         (async function () {
             try {

@@ -21,6 +21,6 @@ export default function useFetchCategories(params) {
     }, [params]);
 
     const categories_error = error;
-    const categories_loading = error;
+    const categories_loading = loading;
     return { categories, categories_error, categories_loading };
 }

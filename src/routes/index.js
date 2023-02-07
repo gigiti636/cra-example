@@ -15,8 +15,8 @@ const LoginAsync = lazy(() => import("../screens/Login/Login"));
 
 const Navbar = lazy(() => import("../screens/App/Navbar/Navbar"));
 const Page1 = lazy(() => import("../screens/App/Page1/Page1"));
-const Page2 = lazy(() => import("../screens/App/Page2/Page2"));
-const Page2Outer = lazy(() => import("../screens/App/Page2/Page2_outer"));
+const Page2 = lazy(() => import("../screens/App/Page2/MockCategories"));
+const Page2Outer = lazy(() => import("../screens/App/Page2/Category_inner"));
 const Page3 = lazy(() => import("../screens/App/Page3/Page3"));
 
 const App = () => {
