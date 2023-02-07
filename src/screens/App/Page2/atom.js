@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const CategoriesWrapper = styled.div`
+    background: ${(props) => props.theme.darkWhite}
+ `
+
 export const CategoryWrapper = styled.div`
   border-radius: 4px;
   min-width: 220px;

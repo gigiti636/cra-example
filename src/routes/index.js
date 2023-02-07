@@ -28,9 +28,9 @@ const App = () => {
                 <Navbar />
                 <Suspense>
                     <Routes>
-                        <Route home path="/login" element={<LoginAsync/>}/>
+                        <Route path="/login" element={<LoginAsync/>}/>
                         <Route path="/" element={<PrivateRoute><Page1/></PrivateRoute>}/>
-                        <Route path="/mock-categories" element={<PrivateRoute><Page2/></PrivateRoute>}>
+                        <Route home path="/mock-categories" element={<PrivateRoute><Page2/></PrivateRoute>}>
                             <Route path=':categoryId' element={<PrivateRoute><Page2Outer/></PrivateRoute>} />
                        </Route>
                         <Route path="/rick-and-morty-api" element={<PrivateRoute><Page3/></PrivateRoute>}/>
